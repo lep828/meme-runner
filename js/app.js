@@ -1,53 +1,45 @@
 $(function(){
   var $scoreDisplay = $("#score");
   var score = 0;
-  var $death = $("#death");
+  var $death = $(".death");
 
   bindEvents();
 
   setInterval(function(){
-    $death = $("#death");
+    $death = $(".death");
     $death.each(function(){
       checkCollision($death)
     })
     score++;
     $scoreDisplay.html(score);
-  }, 50);
+  }, 100);
 
-  // $("#playArea").on("load", "#death", function(){
-  //   $("#death").parent().prepend($("#death").clone());
-  // })
-  
-  $("#death").animate({
+  $(".death").animate({
     "right": "850px"
   }, 3000);
 
   setInterval(function(){
       // var enemy = new createEnemy($death.offset().left, $death.offset().top, 40, 80)
-      $("#death").parent().prepend($("#death").clone().css("right", "0"))
-      createEnemy($death.offset().left, $death.offset.top, 40, 40)
+      $(".death").parent().prepend($(".death").clone().css("right", "0"))
+      createEnemy($death.offset().left, $death.offset.top, 40, 90)      
+      $(".death").slice(1).remove();
     }, 3000)
 })
 
-// $("main").on("onload", "#death", function(){
-//   $(this).parent().prepend($(this).clone());
-// })
-
 function bindEvents(){
+  playerMove();
+}
 
-  if($("#player").position().top === 0){
-    $("#player").stop()
-  } else {
-    $("body").on("keyup", function () {
-      $("#player").stop().animate({
-        bottom: "+=150px"
-      }, 400, function () {
-        $("#player").animate({
-          bottom: "0"
-        }, 600);
-      })
+function playerMove(){
+  $("body").on("keyup", function () {
+    $("#player").stop().animate({
+      bottom: "+=150px"
+    }, 400, function () {
+      $("#player").animate({
+        bottom: "0"
+      }, 600);
     })
-  }
+  })
 }
 
 function createEnemy(x, y, width, height){
@@ -56,7 +48,7 @@ function createEnemy(x, y, width, height){
   this.width = width;
   this.height = height; 
 
-  $("#death").animate({
+  $(".death").animate({
     "right": "850px"
   }, 2500);
 }

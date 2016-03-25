@@ -17,12 +17,11 @@ body {
   position: fixed;
   height: 320px;
   width: 800px;
-  border: 1px solid black;
   border-bottom: 20px solid lime;
   display: inline-block;
 }
 
-#death {
+.death {
   background: black;
   width: 40px;
   height: 80px;
