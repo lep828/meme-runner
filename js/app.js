@@ -5,7 +5,6 @@ $(function(){
   var score = 0;
   var $death = $(".death");
 
-
   bindEvents();
 
   setInterval(function(){
@@ -49,19 +48,17 @@ function bindEvents(){
 }
 
 function playerMove(){
-  $("body").on("keyup", function () {
 
+  $("body").on("keyup", function () {
     if($("#player").position().top <= 0){
       console.log("boom")
       // $("#player").off("keyup").stop().clearQueue();
       // $("#player").unbind("keyup").clearQueue().stop();
       // $("#player").css("top", "1", "position", "fixed")
-
-      
+      $("#player").stop().animate({bottom: "0"}, 600)
       return false 
 
     } else {
-
       $("#player").stop().animate({
         bottom: "+=150px"
       }, 400, function () {

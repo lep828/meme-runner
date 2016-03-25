@@ -16,7 +16,7 @@ body {
 #playArea {
   background-color: white; 
   position: fixed;
-  height: 320px;
+  height: 340px;
   width: 800px;
   border-bottom: 20px solid lime;
   display: inline-block;
