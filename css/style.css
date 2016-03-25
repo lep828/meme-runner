@@ -2,6 +2,7 @@ body {
   background-color: black; 
 }
 
+
 #player {
   background: blue;
   width: 40px;
@@ -42,6 +43,13 @@ body {
 }
 
 #score {
+  font-size: 15px;
+  position: absolute;
+  left: 20px;
+  top: 40px;
+}
+
+#highScore {
   font-size: 15px;
   position: absolute;
   left: 20px;
