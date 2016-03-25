@@ -12,6 +12,7 @@
   position: fixed;
   height: 320px;
   width: 800px;
+  border: 1px solid black;
   border-bottom: 20px solid lime;
   display: inline-block;
 }
@@ -26,10 +27,20 @@
   position: absolute;
 }
 
+#deathWall {
+  background: red;
+  width: 40px;
+  height: 100%;
+  display: inline-block;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
 #score {
   background: gray;
-  opacity: 0.2;
+  opacity: 0.4;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
 }

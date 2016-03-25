@@ -1,78 +1,88 @@
 $(function(){
-  $("#death").animate({
-    "right": "850px"
-  }, 5000);
+  var $scoreDisplay = $("#score");
+  var score = 0;
+  var $death = $("#death");
 
-
-  $("body").on("keypress", function () {
-    $("#player").stop().animate({
-      bottom: "+=150px"
-    }, 400, function () {
-      $("#player").animate({
-        bottom: "0"
-      }, 600);
-    })
-  })
-
-
+  bindEvents();
 
   setInterval(function(){
-    checkCollision();
-  }, 20)
+    checkCollision($death);
+    score++;
+    $scoreDisplay.html(score);
+  }, 50);
 
+  // $("#playArea").on("load", "#death", function(){
+  //   $("#death").parent().prepend($("#death").clone());
+  // })
+  
+  $("#death").animate({
+    "right": "850px"
+  }, 3000);
 
-
-  // if($death.position().left === $player.position().left) {
-  //   console.log('now')
-  //   checkCollision($player, $death);
-  // }
+  setInterval(function(){
+      // var enemy = new createEnemy($death.offset().left, $death.offset().top, 40, 80)
+      $("#death").parent().prepend($("#death").clone().css("right", "0"))
+      createEnemy($death.offset().left, $death.offset.top, 40, 40)
+  }, 3000)
 })
 
+// $("main").on("onload", "#death", function(){
+//   $(this).parent().prepend($(this).clone());
+// })
 
-function checkCollision() {
+function bindEvents(){
 
+  if($("#player").position().top === 0){
+    $("#player").stop()
+  } else {
+    $("body").on("keyup", function () {
+      $("#player").stop().animate({
+        bottom: "+=150px"
+      }, 400, function () {
+        $("#player").animate({
+          bottom: "0"
+        }, 600);
+      })
+    })
+  }
+}
+
+function createEnemy(x, y, width, height){
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height; 
+
+  $("#death").animate({
+    "right": "850px"
+  }, 2500);
+}
+
+function checkCollision(death) {
   console.log("running")
 
-  var $death = $("#death");
   var $player = $("#player");
-
-  var player = {
+  var playerSize = {
     x: $player.offset().left,
     y: $player.offset().top,
     width: 40, 
     height: 40
   }
 
-  var death = {
-    x: $death.offset().left,
-    y: $death.offset().top,
+  var deathSize = {
+    x: death.offset().left,
+    y: death.offset().top,
     width: 40,
     height: 80
   }
 
-  if (player.x < death.x + death.width &&
-   player.x + player.width > death.x &&
-   player.y < death.y + death.height &&
-   player.height + player.y > death.y) {
+  if (playerSize.x < deathSize.x + deathSize.width &&
+   playerSize.x + playerSize.width > deathSize.x &&
+   playerSize.y < deathSize.y + deathSize.height &&
+   playerSize.height + playerSize.y > deathSize.y) {
       // collision detected!
     console.log('boom')
   }
 }
 
 
-
-// function checkCollision(player, death){
-//   var $scoreDisplay = $("#score");
-//   var score = 0;
-
-//   var dheight = 320 - death.position().top
-//   var pheight = 320 - player.position().top
-
-//   if(pheight < dheight){
-//     console.log("collision");
-//     alive = false;
-//   } else {
-//     score++;
-//     $scoreDisplay.html(score);
-//   }
-// }
