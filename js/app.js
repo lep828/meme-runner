@@ -1,17 +1,25 @@
 $(function(){
   var $scoreDisplay = $("#score");
+  var $highScore = $("#highScore");
+  var highScore = 0;
   var score = 0;
   var $death = $(".death");
+
 
   bindEvents();
 
   setInterval(function(){
     $death = $(".death");
-    $death.each(function(){
-      checkCollision($death)
-    })
     score++;
     $scoreDisplay.html(score);
+
+    if(checkCollision($death) === true){
+      if(score > highScore){
+        highScore = score;
+        $highScore.html("Highscore = "+highScore)
+      }
+      score = 0;
+    }
   }, 100);
 
   $(".death").animate({
@@ -47,7 +55,6 @@ function createEnemy(x, y, width, height){
   this.y = y;
   this.width = width;
   this.height = height; 
-
   $(".death").animate({
     "right": "850px"
   }, 2500);
@@ -55,7 +62,7 @@ function createEnemy(x, y, width, height){
 
 function checkCollision(death) {
   console.log("running")
-
+  
   var $player = $("#player");
   var playerSize = {
     x: $player.offset().left,
@@ -76,7 +83,7 @@ function checkCollision(death) {
    playerSize.y < deathSize.y + deathSize.height &&
    playerSize.height + playerSize.y > deathSize.y) {
       // collision detected!
-    console.log('boom')
+    return true
   }
 }
 
