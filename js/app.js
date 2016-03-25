@@ -6,7 +6,10 @@ $(function(){
   bindEvents();
 
   setInterval(function(){
-    checkCollision($death);
+    $death = $("#death");
+    $death.each(function(){
+      checkCollision($death)
+    })
     score++;
     $scoreDisplay.html(score);
   }, 50);
@@ -23,7 +26,7 @@ $(function(){
       // var enemy = new createEnemy($death.offset().left, $death.offset().top, 40, 80)
       $("#death").parent().prepend($("#death").clone().css("right", "0"))
       createEnemy($death.offset().left, $death.offset.top, 40, 40)
-  }, 3000)
+    }, 3000)
 })
 
 // $("main").on("onload", "#death", function(){

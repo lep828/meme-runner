@@ -1,3 +1,7 @@
+body {
+  background-color: black; 
+}
+
 #player {
   background: blue;
   width: 40px;
@@ -9,6 +13,7 @@
 }
 
 #playArea {
+  background-color: white; 
   position: fixed;
   height: 320px;
   width: 800px;
@@ -18,29 +23,28 @@
 }
 
 #death {
-  background: red;
+  background: black;
   width: 40px;
   height: 80px;
   display: inline-block;
   bottom: 0;
-  right: 0;
+  right: -40px;
   position: absolute;
 }
 
 #deathWall {
-  background: red;
+  background: black;
   width: 40px;
   height: 100%;
   display: inline-block;
   bottom: 0;
-  right: 0;
+  right: -40px;
   position: absolute;
 }
 
 #score {
-  background: gray;
-  opacity: 0.4;
+  font-size: 15px;
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 20px;
+  top: 20px;
 }
