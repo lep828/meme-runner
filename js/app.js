@@ -4,8 +4,7 @@ $(function(){
   var highScore = 0;
   var score = 0;
   var $enemy = $(".enemy");
-
-  var enemySpeed = 2500;
+  var enemySpeed = 850;
 
   bindEvents();
 
@@ -21,9 +20,9 @@ $(function(){
       }
       score = 0;
       $scoreDisplay.html("Current Score = " +score);
-      enemySpeed = 2500;
+      enemySpeed = 850;
     }
-  }, 100);
+  }, 20);
 
   $("#player").animate({"bottom": "0px"}, 1000)
 
@@ -32,36 +31,36 @@ $(function(){
     if(randomEnemy === "$enemy1"){
       $("#playArea").prepend("<div class=enemy id=enemy1></div>")
       $("#enemy1").animate({
-        "right": "850px"
-      }, enemySpeed);
+        "right": enemySpeed+"px"
+      }, 2500);
       $(".enemy").slice(1).remove();
+
     } else if(randomEnemy === "$enemy2") {
       $("#playArea").prepend("<div class=enemy id=enemy2></div>")
       $("#enemy2").animate({
-        "right": "850px"
-      }, enemySpeed);
+        "right": enemySpeed+"px"
+      }, 2500);
       $(".enemy").slice(1).remove();
 
     } else if(randomEnemy === "$enemy3"){
       $("#playArea").prepend("<div class=enemy id=enemy3></div>")
       $("#enemy3").animate({
-        "right": "850px"
-      }, enemySpeed);
+        "right": enemySpeed+"px"
+      }, 2500);
       $(".enemy").slice(1).remove();
 
     } else {
       // ***************************************
       // NEED TO FIX COLLISION WITH BOTTOM ENEMY
       // ***************************************
-
       $("#playArea").prepend("<div class=enemy id=enemy1></div>")
       $("#playArea").prepend("<div class=enemy id=enemy3></div>")
       $(".enemy").animate({
-        "right": "850px"
-      }, enemySpeed);
+        "right": enemySpeed+"px"
+      }, 2500);
       $(".enemy").slice(2).remove();
     }
-    enemySpeed -= 25;
+    enemySpeed += 50;
     console.log(enemySpeed)
   }, 2000)
 })

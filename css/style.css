@@ -1,5 +1,20 @@
 body {
   background-color: black; 
+  font-family: '8BITWONDERNominal'; 
+  font-weight: normal; 
+  font-style: normal; 
+}
+
+header {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+main {
+  width: 800px;
+  margin: 0 auto;
 }
 
 
@@ -14,12 +29,21 @@ body {
 }
 
 #playArea {
+  border: 1px dotted black;
   background-color: white; 
   position: fixed;
   height: 340px;
   width: 800px;
-  border-bottom: 20px solid lime;
   display: inline-block;
+}
+
+#floor {
+  position: fixed;
+  top: 415px;
+  height: 40px;
+  width: 800px;
+  display: inline-block;
+  background-image: url("http://i.imgur.com/0cD7Y90.png");
 }
 
 .enemy {
@@ -47,14 +71,14 @@ body {
 
 #score {
   font-size: 15px;
-  position: absolute;
-  left: 20px;
+  position: fixed;
+  /*left: 20px;*/
   top: 40px;
 }
 
 #highScore {
   font-size: 15px;
-  position: absolute;
-  left: 20px;
+  position: fixed;
+  /*left: 20px;*/
   top: 20px;
 }
