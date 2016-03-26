@@ -9,7 +9,7 @@ body {
   height: 40px;
   position: absolute;
   left: 10%;
-  bottom: 0;
+  bottom: 70%;
   display: inline-block;
 }
 
@@ -25,21 +25,24 @@ body {
 .death {
   background: black;
   width: 40px;
-  height: 80px;
   display: inline-block;
-  bottom: 0;
   right: -40px;
   position: absolute;
 }
 
-#deathWall {
-  background: black;
-  width: 40px;
-  height: 100%;
-  display: inline-block;
+#enemy1 {
   bottom: 0;
-  right: -40px;
-  position: absolute;
+  height: 120px;
+}
+
+#enemy2 {
+  bottom: 30%;
+  height: 120px;
+}
+
+#enemy3 {
+  bottom: 220px;
+  height: 120px;
 }
 
 #score {
