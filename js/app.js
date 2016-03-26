@@ -3,14 +3,14 @@ $(function(){
   var $highScore = $("#highScore");
   var highScore = 0;
   var score = 0;
-  var $death = $(".death");
+  var $enemy = $(".enemy");
 
   var enemySpeed = 2500;
 
   bindEvents();
 
   setInterval(function(){
-    $death = $(".death");
+    $enemy = $(".enemy");
     score++;
     $scoreDisplay.html("Current Score = " +score);
 
@@ -18,10 +18,10 @@ $(function(){
       if(score > highScore){
         highScore = score;
         $highScore.html("Highscore = " +highScore);
-        enemySpeed = 2500;
       }
       score = 0;
       $scoreDisplay.html("Current Score = " +score);
+      enemySpeed = 2500;
     }
   }, 100);
 
@@ -30,36 +30,55 @@ $(function(){
   setInterval(function(){
     var randomEnemy = randomSpawn();
     if(randomEnemy === "$enemy1"){
-      $("#playArea").prepend("<div class=death id=enemy1></div>")
+      $("#playArea").prepend("<div class=enemy id=enemy1></div>")
       $("#enemy1").animate({
         "right": "850px"
       }, enemySpeed);
+      $(".enemy").slice(1).remove();
     } else if(randomEnemy === "$enemy2") {
-      $("#playArea").prepend("<div class=death id=enemy2></div>")
+      $("#playArea").prepend("<div class=enemy id=enemy2></div>")
       $("#enemy2").animate({
         "right": "850px"
       }, enemySpeed);
-    } else {
-      $("#playArea").prepend("<div class=death id=enemy3></div>")
+      $(".enemy").slice(1).remove();
+
+    } else if(randomEnemy === "$enemy3"){
+      $("#playArea").prepend("<div class=enemy id=enemy3></div>")
       $("#enemy3").animate({
         "right": "850px"
       }, enemySpeed);
+      $(".enemy").slice(1).remove();
+
+    } else {
+      // ***************************************
+      // NEED TO FIX COLLISION WITH BOTTOM ENEMY
+      // ***************************************
+
+      $("#playArea").prepend("<div class=enemy id=enemy1></div>")
+      $("#playArea").prepend("<div class=enemy id=enemy3></div>")
+      $(".enemy").animate({
+        "right": "850px"
+      }, enemySpeed);
+      $(".enemy").slice(2).remove();
     }
-    $(".death").slice(1).remove();
     enemySpeed -= 25;
+    console.log(enemySpeed)
   }, 2000)
 })
 
 function randomSpawn(){
   var randomNum = Math.random()
-  if(randomNum < 0.33){
+  if(randomNum < 0.25){
     return "$enemy1";
 
-  } else if(randomNum < 0.66){
+  } else if(randomNum < 0.5){
     return "$enemy2";
 
-  } else {
+  } else if(randomNum < 0.75){
     return "$enemy3";
+
+  } else {
+    return "bonus"
   }
 }
 
@@ -73,7 +92,7 @@ function playerMove(){
     if($("#player").position().top <= 0){
       console.log("boom")
 
-      $("#player").stop().animate({bottom: "0"}, 600) //kinda works need to fix still
+      $("#player").stop().animate({bottom: "0"}, 600)
       return false 
 
     } else {
@@ -100,17 +119,17 @@ function checkCollision() {
     height: 40
   }
 
-  var deathSize = {
-    x: $(".death").offset().left,
-    y: $(".death").offset().top,
+  var enemySize = {
+    x: $(".enemy").offset().left,
+    y: $(".enemy").offset().top,
     width: 40,
     height: 120
   }
 
-  if (playerSize.x < deathSize.x + deathSize.width &&
-   playerSize.x + playerSize.width > deathSize.x &&
-   playerSize.y < deathSize.y + deathSize.height &&
-   playerSize.height + playerSize.y > deathSize.y) {
+  if (playerSize.x < enemySize.x + enemySize.width &&
+   playerSize.x + playerSize.width > enemySize.x &&
+   playerSize.y < enemySize.y + enemySize.height &&
+   playerSize.height + playerSize.y > enemySize.y) {
     return true
   }
 }

@@ -4,7 +4,7 @@ body {
 
 
 #player {
-  background: blue;
+  background-image: url("http://i.imgur.com/ugjOpNp.jpg");
   width: 40px;
   height: 40px;
   position: absolute;
@@ -22,11 +22,11 @@ body {
   display: inline-block;
 }
 
-.death {
-  background: black;
+.enemy {
+  background-image: url("http://i.imgur.com/GuuWOtW.png");
   width: 40px;
   display: inline-block;
-  right: -40px;
+  right: 0;
   position: absolute;
 }
 
