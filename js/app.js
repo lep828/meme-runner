@@ -4,12 +4,10 @@ $(function(){
 
 function bindEvents(){
   playerMove();
-  $("#start").on("click", init);
-}
-
-function init(){
-  $("#start").fadeOut(1500);
-  startGame();
+  $("#start").one("click", function(){
+    $("#start").fadeOut(1500);
+    startGame();
+  });
 }
 
 function startGame(){
@@ -36,7 +34,8 @@ function startGame(){
       $scoreDisplay.html("Current Score = 0");
       enemySpeed = 850;
       levelStart = false;
-      $("#start").fadeIn(1500);
+      // $("#start").fadeIn(1500);
+      $(".enemy").stop();
     }
   }, 20);
 
@@ -51,13 +50,13 @@ function removeEnemy(){
 
 function randomSpawn(){
   var randomNum = Math.random()
-  if(randomNum < 0.2){
+  if(randomNum < 0.4){
     return "$enemy1";
-  } else if(randomNum < 0.4){
-    return "$enemy2";
   } else if(randomNum < 0.6){
+    return "$enemy2";
+  } else if(randomNum < 0.75){
     return "$enemy3";
-  } else if(randomNum < 0.8){
+  } else if(randomNum < 0.9){
     return "$enemy4"
   } else {
     return "$enemy5"
@@ -72,31 +71,31 @@ function addEnemy(){
     case "$enemy1":
     $("#playArea").prepend("<div class=enemy id=enemy1></div>")
     $("#enemy1").animate({
-      "right": "1000px"
+      "right": "760px"
     }, enemySpeed);
     break;
     case "$enemy2":
     $("#playArea").prepend("<div class=enemy id=enemy2></div>")
     $("#enemy2").animate({
-      "right": "1000px"
+      "right": "760px"
     }, enemySpeed);
     break;
     case "$enemy3":
     $("#playArea").prepend("<div class=enemy id=enemy3></div>")
     $("#enemy3").animate({
-      "right": "1000px"
+      "right": "760px"
     }, enemySpeed);
     break;
     case "$enemy4":
     $("#playArea").prepend("<div class=enemy id=enemy4></div>")
     $("#enemy4").animate({
-      "right": "1000px"
+      "right": "760px"
     }, enemySpeed);
     break;
     case "$enemy5":
     $("#playArea").prepend("<div class=enemy id=enemy5></div>")
     $("#enemy5").animate({
-      "right": "1000px"
+      "right": "760px"
     }, enemySpeed);
     break;
   }
