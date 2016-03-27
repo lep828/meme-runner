@@ -49,7 +49,7 @@ main {
 #space {
   position: fixed;
   top: 450px;
-  left: 45%;
+  left: 47%;
   height: 24px;
   width: 100px;
   background-size: 100%;
@@ -69,7 +69,7 @@ main {
   height: 340px;
   display: inline-block;
   position: fixed;
-  right: 66px;
+  right: 22%;
   background-image: url("http://i.imgur.com/4vcNEDP.png");
 }
 
@@ -116,6 +116,6 @@ main {
   height: 24px;
   background-size: 100%;
   background-image: url("http://i.imgur.com/pOFcVbB.png"); 
-  right: 44%;
+  left: 47%;
   top: 30%;
 }
