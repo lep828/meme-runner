@@ -1,114 +1,150 @@
 $(function(){
+  bindEvents();
+})
+
+function bindEvents(){
+  var levelStart = false;
+  playerMove();
+  $("#start").on("click", init);
+}
+
+function init(){
+  $("#start").fadeOut(1500);
+  levelStart = true;
+  startGame()
+}
+
+function startGame(){
   var $scoreDisplay = $("#score");
   var $highScore = $("#highScore");
   var highScore = 0;
   var score = 0;
   var $enemy = $(".enemy");
-  var enemySpeed = 850;
-
-  bindEvents();
 
   setInterval(function(){
     $enemy = $(".enemy");
     score++;
-    $scoreDisplay.html("Current Score = " +score);
+    $scoreDisplay.html("Current Score = " + score);
+
+    removeEnemy();
 
     if(checkCollision() === true){
       if(score > highScore){
         highScore = score;
-        $highScore.html("Highscore = " +highScore);
+        $highScore.html("Highscore = " + highScore);
       }
       score = 0;
-      $scoreDisplay.html("Current Score = " +score);
+      $scoreDisplay.html("Current Score = 0");
       enemySpeed = 850;
+      levelStart = false;
+      $("#start").fadeIn(1500);
     }
   }, 20);
 
-  $("#player").animate({"bottom": "0px"}, 1000)
+  setInterval(addEnemy, 1500)
+}
 
-  setInterval(function(){
-    var randomEnemy = randomSpawn();
-    if(randomEnemy === "$enemy1"){
-      $("#playArea").prepend("<div class=enemy id=enemy1></div>")
-      $("#enemy1").animate({
-        "right": enemySpeed+"px"
-      }, 2500);
-      $(".enemy").slice(1).remove();
-
-    } else if(randomEnemy === "$enemy2") {
-      $("#playArea").prepend("<div class=enemy id=enemy2></div>")
-      $("#enemy2").animate({
-        "right": enemySpeed+"px"
-      }, 2500);
-      $(".enemy").slice(1).remove();
-
-    } else if(randomEnemy === "$enemy3"){
-      $("#playArea").prepend("<div class=enemy id=enemy3></div>")
-      $("#enemy3").animate({
-        "right": enemySpeed+"px"
-      }, 2500);
-      $(".enemy").slice(1).remove();
-
-    } else {
-      // ***************************************
-      // NEED TO FIX COLLISION WITH BOTTOM ENEMY
-      // ***************************************
-      $("#playArea").prepend("<div class=enemy id=enemy1></div>")
-      $("#playArea").prepend("<div class=enemy id=enemy3></div>")
-      $(".enemy").animate({
-        "right": enemySpeed+"px"
-      }, 2500);
-      $(".enemy").slice(2).remove();
-    }
-    enemySpeed += 50;
-    console.log(enemySpeed)
-  }, 2000)
-})
-
-function randomSpawn(){
-  var randomNum = Math.random()
-  if(randomNum < 0.25){
-    return "$enemy1";
-
-  } else if(randomNum < 0.5){
-    return "$enemy2";
-
-  } else if(randomNum < 0.75){
-    return "$enemy3";
-
-  } else {
-    return "bonus"
+function removeEnemy(){
+  if($(".enemy").length > 1){
+    $(".enemy").slice(1).remove();
   }
 }
 
-function bindEvents(){
-  playerMove();
+function randomSpawn(){
+  var randomNum = Math.random()
+  if(randomNum < 0.2){
+    return "$enemy1";
+  } else if(randomNum < 0.4){
+    return "$enemy2";
+  } else if(randomNum < 0.6){
+    return "$enemy3";
+  } else if(randomNum < 0.8){
+    return "$enemy4"
+  } else {
+    return "$enemy5"
+  }
 }
 
+function addEnemy(){
+  var enemySpeed = 1500;
+  var randomEnemy = randomSpawn();
+
+  switch(randomEnemy){
+    case "$enemy1":
+    $("#playArea").prepend("<div class=enemy id=enemy1></div>")
+    $("#enemy1").animate({
+      "right": "1000px"
+    }, enemySpeed);
+    break;
+    case "$enemy2":
+    $("#playArea").prepend("<div class=enemy id=enemy2></div>")
+    $("#enemy2").animate({
+      "right": "1000px"
+    }, enemySpeed);
+    break;
+    case "$enemy3":
+    $("#playArea").prepend("<div class=enemy id=enemy3></div>")
+    $("#enemy3").animate({
+      "right": "1000px"
+    }, enemySpeed);
+    break;
+    case "$enemy4":
+    $("#playArea").prepend("<div class=enemy id=enemy4></div>")
+    $("#enemy4").animate({
+      "right": "1000px"
+    }, enemySpeed);
+    break;
+    case "$enemy5":
+    $("#playArea").prepend("<div class=enemy id=enemy5></div>")
+    $("#enemy5").animate({
+      "right": "1000px"
+    }, enemySpeed);
+    break;
+  }
+  // *******************************************
+  // * NEED TO FIX COLLISION WITH BOTTOM ENEMY *
+  // *******************************************
+  // $("#playArea").prepend("<div class=enemy id=enemy1></div>")
+  // $("#playArea").prepend("<div class=enemy id=enemy3></div>")
+  // $(".enemy").animate({
+  //   "right": enemySpeed+"px"
+  // }, 2500);
+  // $(".enemy").slice(2).remove();
+}
+
+
 function playerMove(){
+  $(window).keydown(function (e) {
+    if (e.keyCode === 0 || e.keyCode === 32) {
+      $("#space").css("background-image", "url('http://i.imgur.com/3aYa5Y1.png')")
+    }
+  })
 
-  $("body").on("keyup", function () {
-    if($("#player").position().top <= 0){
-      console.log("boom")
+  $(window).keyup(function (e) {
+    if (e.keyCode === 0 || e.keyCode === 32) {
+      e.preventDefault()
+      $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
+      if($("#player").position().top <= 0){
+        console.log("boom")
+        // fix this ????!?!?!?!?!?!?
+        $("#player").stop().animate({bottom: "0"}, 600)
+        return false 
 
-      $("#player").stop().animate({bottom: "0"}, 600)
-      return false 
+      } else {
 
-    } else {
-
-      $("#player").stop().animate({
-        bottom: "+=100px"
-      }, 400, function () {
-        $("#player").animate({
-          bottom: "0"
-        }, 600);
-      })
+        $("#player").stop().animate({
+          bottom: "+=100px"
+        }, 400, function () {
+          $("#player").animate({
+            bottom: "0"
+          }, 600);
+        })
+      }
     }
   })
 }
 
 function checkCollision() {
-  console.log("running")
   var $player = $("#player");
 
   var playerSize = {
@@ -129,7 +165,7 @@ function checkCollision() {
    playerSize.x + playerSize.width > enemySize.x &&
    playerSize.y < enemySize.y + enemySize.height &&
    playerSize.height + playerSize.y > enemySize.y) {
-    return true
+    return true 
   }
 }
 

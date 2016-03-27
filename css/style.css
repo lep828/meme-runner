@@ -3,6 +3,7 @@ body {
   font-family: '8BITWONDERNominal'; 
   font-weight: normal; 
   font-style: normal; 
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
@@ -24,12 +25,11 @@ main {
   height: 40px;
   position: absolute;
   left: 10%;
-  bottom: 70%;
+  bottom: 0;
   display: inline-block;
 }
 
 #playArea {
-  border: 1px dotted black;
   background-color: white; 
   position: fixed;
   height: 340px;
@@ -40,10 +40,20 @@ main {
 #floor {
   position: fixed;
   top: 415px;
-  height: 40px;
+  height: 20px;
   width: 800px;
   display: inline-block;
-  background-image: url("http://i.imgur.com/0cD7Y90.png");
+  background-image: url("http://i.imgur.com/2bP1t6x.png");
+}
+
+#space {
+  position: fixed;
+  top: 450px;
+  left: 45%;
+  height: 24px;
+  width: 100px;
+  background-size: 100%;
+  background-image: url("http://i.imgur.com/EwBCKl7.png");
 }
 
 .enemy {
@@ -54,31 +64,58 @@ main {
   position: absolute;
 }
 
+#wall {
+  width: 40px;
+  height: 340px;
+  display: inline-block;
+  position: fixed;
+  right: 66px;
+  background-image: url("http://i.imgur.com/4vcNEDP.png");
+}
+
 #enemy1 {
   bottom: 0;
   height: 120px;
 }
 
 #enemy2 {
-  bottom: 30%;
+  bottom: 20%;
   height: 120px;
 }
 
 #enemy3 {
-  bottom: 220px;
+  bottom: 30%;
+  height: 120px;
+}
+
+#enemy4 {
+  bottom: 50%;
+  height: 120px;
+}
+
+#enemy5 {
+  bottom: 65%;
   height: 120px;
 }
 
 #score {
   font-size: 15px;
   position: fixed;
-  /*left: 20px;*/
   top: 40px;
 }
 
 #highScore {
   font-size: 15px;
   position: fixed;
-  /*left: 20px;*/
   top: 20px;
+}
+
+#start {
+  position: fixed;
+  width: 100px;
+  height: 24px;
+  background-size: 100%;
+  background-image: url("http://i.imgur.com/pOFcVbB.png"); 
+  right: 44%;
+  top: 30%;
 }
