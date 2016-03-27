@@ -3,18 +3,17 @@ $(function(){
 })
 
 function bindEvents(){
-  var levelStart = false;
   playerMove();
   $("#start").on("click", init);
 }
 
 function init(){
   $("#start").fadeOut(1500);
-  levelStart = true;
-  startGame()
+  startGame();
 }
 
 function startGame(){
+
   var $scoreDisplay = $("#score");
   var $highScore = $("#highScore");
   var highScore = 0;
