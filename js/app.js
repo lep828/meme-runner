@@ -1,5 +1,6 @@
 $(function(){
   bindEvents();
+  var backgroundMusic = $("audio")[1].play();
 })
 
 function bindEvents(){
@@ -11,7 +12,6 @@ function bindEvents(){
 }
 
 function startGame(){
-
   var $scoreDisplay = $("#score");
   var $highScore = $("#highScore");
   var highScore = 0;
@@ -35,6 +35,7 @@ function startGame(){
       enemySpeed = 850;
       levelStart = false;
       // $("#start").fadeIn(1500);
+      $("audio")[2].play();
       $(".enemy").stop();
     }
   }, 20);
@@ -110,6 +111,11 @@ function addEnemy(){
   // $(".enemy").slice(2).remove();
 }
 
+function playAudio(){
+  var audio = $("audio")[0]
+  audio.load();
+  audio.play();
+}
 
 function playerMove(){
   $(window).keydown(function (e) {
@@ -122,6 +128,7 @@ function playerMove(){
     if (e.keyCode === 0 || e.keyCode === 32) {
       e.preventDefault()
       $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
+      playAudio();
       if($("#player").position().top <= 0){
         console.log("boom")
         // fix this ????!?!?!?!?!?!?
