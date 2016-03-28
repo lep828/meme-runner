@@ -24,8 +24,8 @@ meme.bindEvents = function(){
     }
     $("#start").fadeOut(1500);
     $("#endScreen").fadeOut(1500);
-    meme.startGame();
     meme.play = true;
+    meme.startGame();
   });
 }
 
@@ -55,7 +55,6 @@ meme.playerMovement = function(){
     })
   }
 }
-
 
 meme.startGame = function(){
   if(meme.play === true){

@@ -122,8 +122,13 @@ main {
 #changeMeme {
   position: fixed;
   bottom: 40%;
-  right: 47%;
+  left: 45%;
   width: 100px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: gray;
+  cursor: pointer;
 }
 
 #sadMeme {
