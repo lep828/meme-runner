@@ -99,6 +99,7 @@ main {
   background-image: url("http://i.imgur.com/pOFcVbB.png"); 
   left: 46%;
   top: 25%;
+  cursor: pointer;
 }
 
 #space {
@@ -123,6 +124,26 @@ main {
   position: fixed;
   color: white;
   left: 55%;
+}
+
+#doge {
+  cursor: pointer;
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+  width: 100px;
+}
+
+.inactive {
+  background: gray;
+  border: 1px solid black;
+  font-family: "Comic sans MS"
+}
+
+.active {
+  background: white;
+  border: 1px solid black;
+  font-family: "Comic sans MS"
 }
 
 @media only screen and (max-width: 1150px) {

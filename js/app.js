@@ -6,6 +6,7 @@ bluck.enemySpeed = 1500;
 $(function(){
   bluck.bindEvents();
   $("audio")[1].play();
+  bluck.dogeMode();
 })
 
 bluck.bindEvents = function(){
@@ -156,3 +157,29 @@ bluck.checkCollision = function(){
     return true 
 }
 }
+
+
+bluck.dogeMode = function(){
+  $("#doge").on("click", function(){
+    if($("#doge").hasClass("inactive") === true){
+      $("#doge").removeClass("inactive");
+      $("#doge").addClass("active");
+      $("#doge").html("No Doge");
+
+      $("#player").css("background-image", "url(http://piq.codeus.net/static/media/userpics/piq_302527_400x400.png),");
+      $("#playArea").css("background-image", "url(http://www.funnyjunk.com/Wow/funny-gifs/4851032)")
+    } else {
+      $("#doge").removeClass("active");
+      $("#doge").addClass("inactive");
+      $("#doge").html("Such Doge");
+
+      $("#player").css("background-image", "url(http://i.imgur.com/ugjOpNp.jpg)");
+    }
+  })
+}
+
+
+
+
+
+
