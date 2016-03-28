@@ -1,31 +1,31 @@
-var bluck = bluck || {}
+var doge = doge || {}
 
-bluck.$enemy = $(".enemy");
-bluck.enemySpeed = 1500;
-bluck.play = true;
+doge.$enemy = $(".enemy");
+doge.enemySpeed = 1500;
+doge.play = true;
 
 $(function(){
-  bluck.bindEvents();
-  $("audio")[1].play();
-  // bluck.dogeMode();
+  doge.bindEvents();
+  var backgroundMusic = $("audio")[1];
+  backgroundMusic.volume = 0.2;
+  backgroundMusic.play();
 })
 
-bluck.bindEvents = function(){
-  bluck.playerMove();
+doge.bindEvents = function(){
+  doge.playerMove();
   $("#start").on("click", function(){
     $("#start").fadeOut(1500);
     $("#endScreen").fadeOut(1500);
-    bluck.play = true;
-    bluck.startGame();
+    doge.play = true;
+    doge.startGame();
   });
 }
 
-bluck.playerMove = function(){
+doge.playerMove = function(){
   $(window).keypress(function (e) {
     if (e.keyCode === 0 || e.keyCode === 32) {
       e.preventDefault()
-      bluck.playJumpAudio();
-
+      doge.playJumpAudio();
       if($("#player").position().top <= 0){
         return false 
       } else {
@@ -39,62 +39,76 @@ bluck.playerMove = function(){
       }
     }
   })
-  
+  $(window).on("click", function(){
+    doge.playJumpAudio();
+    if($("#player").position().top <= 0){
+      return false 
+    } else {
+      $("#player").stop().animate({
+        bottom: "+=100px"
+      }, 300, function () {
+        $("#player").animate({
+          bottom: " 0"
+        }, 600);
+      })
+    }
+  })
 }
 
-bluck.startGame = function(){
-  if(bluck.play === true){
-    bluck.refreshers();
-    bluck.generateEnemies = setInterval(bluck.addEnemy, 1500);
+
+doge.startGame = function(){
+  if(doge.play === true){
+    doge.refreshers();
+    doge.generateEnemies = setInterval(doge.addEnemy, 1500);
   } else {
-    bluck.endScreen = $("#endScreen")
+    doge.endScreen = $("#endScreen")
     console.log("end")
   }
 }
 
-bluck.refreshers = function(){
-  bluck.$highScore = $("#highScore");
-  bluck.$scoreDisplay = $("#score");
+doge.refreshers = function(){
+  doge.$highScore = $("#highScore");
+  doge.$scoreDisplay = $("#score");
   var highScore = 0;
   var score = 0;
 
-  bluck.refreshing = 
+  doge.refreshing = 
   setInterval(function(){
     score++;
-    bluck.$scoreDisplay.html("Current Score = " + score);
-    bluck.$enemy = $(".enemy");
-    bluck.removeEnemy();
+    doge.$scoreDisplay.html("Score = " + score);
+    doge.$enemy = $(".enemy");
+    doge.removeEnemy();
 
-    if(bluck.checkCollision() === true){
+    if(doge.checkCollision() === true){
       if(score > highScore){
         highScore = score;
-        bluck.$highScore.html("Highscore = " + highScore);
+        doge.$highScore.html("Highscore = " + highScore);
       }
       $("#endScreen").html("You scored "+ score +" click Start to play again")
       $("#endScreen").fadeIn(1500);
       $("#start").fadeIn(1500);
 
       score = 0;
-      bluck.$scoreDisplay.html("Current Score = " + score);
+      doge.$scoreDisplay.html("Score = " + score);
       $("audio")[2].play();
       $(".enemy").stop();
-      bluck.play = false;
+      doge.play = false;
       $(".enemy").slice(0).remove();
-      clearInterval(bluck.generateEnemies);
-      clearInterval(bluck.refreshing);
+      clearInterval(doge.generateEnemies);
+      clearInterval(doge.refreshing);
 
     }
   }, 20);
 }
 //
 
-bluck.removeEnemy = function(){
+doge.removeEnemy = function(){
   if($(".enemy").length > 1){
     $(".enemy").slice(1).remove();
   }
 }
 
-bluck.randomSpawn = function(){
+doge.randomSpawn = function(){
   var randomNum = Math.random()
 
   if(randomNum < 0.5){
@@ -110,42 +124,43 @@ bluck.randomSpawn = function(){
   }
 }
 
-bluck.makeEnemy = function(enemyName){
+doge.makeEnemy = function(enemyName){
   $("#playArea").prepend("<div class=enemy id=" + enemyName + "></div>");
   $("#"+ enemyName).animate({
     "right": "760px"
-  }, bluck.enemySpeed);
+  }, doge.enemySpeed);
 }
 
-bluck.addEnemy = function(){
-  var randomEnemy = bluck.randomSpawn();
+doge.addEnemy = function(){
+  var randomEnemy = doge.randomSpawn();
 
   switch(randomEnemy){
     case "$enemy1":
-    bluck.makeEnemy("enemy1")
+    doge.makeEnemy("enemy1")
     break;
     case "$enemy2":
-    bluck.makeEnemy("enemy2")
+    doge.makeEnemy("enemy2")
     break;
     case "$enemy3":
-    bluck.makeEnemy("enemy3")
+    doge.makeEnemy("enemy3")
     break;
     case "$enemy4":
-    bluck.makeEnemy("enemy4")
+    doge.makeEnemy("enemy4")
     break;
     case "$enemy5":
-    bluck.makeEnemy("enemy5")
+    doge.makeEnemy("enemy5")
     break;
   }
 }
 
-bluck.playJumpAudio = function(){
-  var audio = $("audio")[0]
+doge.playJumpAudio = function(){
+  var audio = $("audio")[0];
+  audio.volume = 1;
   audio.load();
   audio.play();
 }
 
-bluck.checkCollision = function(){
+doge.checkCollision = function(){
   var $player = $("#player");
 
   var playerSize = {
@@ -166,6 +181,6 @@ bluck.checkCollision = function(){
    playerSize.y < enemySize.y + enemySize.height &&
    playerSize.height + playerSize.y > enemySize.y) {
     return true 
-  }
+}
 }
 
