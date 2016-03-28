@@ -19,11 +19,11 @@ main {
 }
 
 .enemy {
-  background-image: url("http://i.imgur.com/qrphGhV.png");
   width: 40px;
   display: inline-block;
   right: 0;
   position: absolute;
+  background-size: cover;
 }
 
 .scores {
@@ -32,7 +32,6 @@ main {
 }
 
 #player {
-  background-image: url("http://i.imgur.com/bxAvTMl.png");
   background-size: cover;
   width: 40px;
   height: 40px;
@@ -40,6 +39,14 @@ main {
   left: 10%;
   bottom: 0;
   display: inline-block;
+}
+
+.doge {
+  background-image: url("http://i.imgur.com/bxAvTMl.png");
+}
+
+.nyan {
+  background-image: url("http://i.imgur.com/NNF1YFP.png");
 }
 
 #playArea {
@@ -111,25 +118,25 @@ main {
   width: 800px;
 }
 
-@media only screen and (max-width: 960px) {
-  #playArea {
-    width: 600px;
-    height: 280px;
-    margin-left: 25px; 
-  }
-  #start {
-    top: 40%;
-    left: 40%;
-  }
-  #endScreen {
-    top: 30%;
-    width: 600px;
-  }
-  #floor {
-    display: none;
-  }
-  header {
-    font-size: 10px;
-    margin-bottom: 35px;
-  }
+#changeMeme {
+  position: fixed;
+  bottom: 40%;
+  right: 11%;
+}
+
+#sadDoge {
+  position: fixed;
+  width: 160px;
+  height: 160px;
+  background-image: url("http://i.imgur.com/0ZLP1X4.png");
+  background-size: cover;
+  opacity: 0.1;
+  top: 31%;
+  left: 42%;
+  display: none;
+}
+
+#sadDoge p {
+  text-align: center;
+  margin-top: -100px;
 }

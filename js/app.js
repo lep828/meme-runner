@@ -1,41 +1,48 @@
-var doge = doge || {}
+var meme = meme || {}
 
-doge.$enemy = $(".enemy");
-doge.enemySpeed = 1500;
-doge.play = true;
+meme.$enemy = $(".enemy");
+meme.enemySpeed = 1500;
+meme.play = true;
 
 $(function(){
-  doge.bindEvents();
+  meme.bindEvents();
+  meme.changeMeme();
   var backgroundMusic = $("audio")[1];
   backgroundMusic.volume = 0.2;
   backgroundMusic.play();
 })
 
-doge.bindEvents = function(){
-  doge.playerMove();
+meme.bindEvents = function(){
+  meme.playerMove();
   $("#start").on("click", function(){
-    $("#player").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)");
+    if($("#player").hasClass("doge")){
+      $("#player").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)");
+      $("#sadDoge").fadeOut(1500);
+    } else if($("#player").hasClass("nyan")) {
+      $("#player").css("background-image", "url(http://i.imgur.com/NNF1YFP.png)")
+      $("#sadDoge").fadeOut(1500);
+    }
     $("#start").fadeOut(1500);
     $("#endScreen").fadeOut(1500);
-    doge.play = true;
-    doge.startGame();
+    meme.play = true;
+    meme.startGame();
   });
 }
 
-doge.playerMove = function(){
+meme.playerMove = function(){
   $(window).keypress(function (e) {
     if (e.keyCode === 0 || e.keyCode === 32) {
       e.preventDefault()
-      doge.playerMovement();
+      meme.playerMovement();
     }
   })
-  $(window).on("click", function(){
-    doge.playerMovement();
+  $("#playArea").on("click", function(){
+    meme.playerMovement();
   })
 }
 
-doge.playerMovement = function(){
-  doge.playJumpAudio();
+meme.playerMovement = function(){
+  meme.playJumpAudio();
   if($("#player").position().top <= 0){
     return false 
   } else {
@@ -50,57 +57,64 @@ doge.playerMovement = function(){
 }
 
 
-doge.startGame = function(){
-  if(doge.play === true){
-    doge.refreshers();
-    doge.generateEnemies = setInterval(doge.addEnemy, 1500);
+meme.startGame = function(){
+  if(meme.play === true){
+    meme.refreshers();
+    meme.generateEnemies = setInterval(meme.addEnemy, 1500);
   }
 }
 
-doge.refreshers = function(){
-  doge.$highScore = $("#highScore");
-  doge.$scoreDisplay = $("#score");
+meme.refreshers = function(){
+  meme.$highScore = $("#highScore");
+  meme.$scoreDisplay = $("#score");
   var highScore = 0;
   var score = 0;
 
-  doge.refreshing = 
+  meme.refreshing = 
   setInterval(function(){
     score++;
-    doge.$scoreDisplay.html("Score = " + score);
-    doge.$enemy = $(".enemy");
-    doge.removeEnemy();
+    meme.$scoreDisplay.html("Score = " + score);
+    meme.$enemy = $(".enemy");
+    meme.removeEnemy();
 
-    if(doge.checkCollision() === true){
+    if(meme.checkCollision() === true){
       if(score > highScore){
         highScore = score;
-        doge.$highScore.html("Highscore = " + highScore);
+        meme.$highScore.html("Highscore = " + highScore);
       }
       $("#endScreen").html("You scored "+ score +" click Start to play again");
       $("#endScreen").fadeIn(1500);
       $("#start").fadeIn(1500);
-      $("#player").css("background-image", "url(http://i.imgur.com/0ZLP1X4.png)");
+      if($("#player").hasClass("doge")){
+        $("#player").css("background-image", "url(http://i.imgur.com/0ZLP1X4.png)");
+        $("#sadDoge").fadeIn(1500);
+      } else {
+        $("#player").css("background-image", "url(http://i.imgur.com/HiVC2oc.png)");
+        $("#sadDoge").css("background-image", "url(http://i.imgur.com/HiVC2oc.png)")
+        $("#sadDoge").fadeIn(1500);
+      }
 
       score = 0;
-      doge.$scoreDisplay.html("Score = " + score);
+      meme.$scoreDisplay.html("Score = " + score);
       $("audio")[2].play();
       $(".enemy").stop();
-      doge.play = false;
+      meme.play = false;
       $(".enemy").slice(0).remove();
-      clearInterval(doge.generateEnemies);
-      clearInterval(doge.refreshing);
+      clearInterval(meme.generateEnemies);
+      clearInterval(meme.refreshing);
 
     }
   }, 20);
 }
 //
 
-doge.removeEnemy = function(){
+meme.removeEnemy = function(){
   if($(".enemy").length > 1){
     $(".enemy").slice(1).remove();
   }
 }
 
-doge.randomSpawn = function(){
+meme.randomSpawn = function(){
   var randomNum = Math.random()
 
   if(randomNum < 0.5){
@@ -116,43 +130,49 @@ doge.randomSpawn = function(){
   }
 }
 
-doge.makeEnemy = function(enemyName){
+meme.makeEnemy = function(enemyName){
   $("#playArea").prepend("<div class=enemy id=" + enemyName + "></div>");
+  if($("#player").hasClass("doge")){
+    $(".enemy").css("background-image", "url(http://i.imgur.com/PdjNc5w.png)")
+  } else {
+    $(".enemy").css("background-image", "url(http://i.imgur.com/C68bMyB.png)")
+  }
+  $(".enemy")
   $("#"+ enemyName).animate({
     "right": "760px"
-  }, doge.enemySpeed);
+  }, meme.enemySpeed);
 }
 
-doge.addEnemy = function(){
-  var randomEnemy = doge.randomSpawn();
+meme.addEnemy = function(){
+  var randomEnemy = meme.randomSpawn();
 
   switch(randomEnemy){
     case "$enemy1":
-    doge.makeEnemy("enemy1")
+    meme.makeEnemy("enemy1")
     break;
     case "$enemy2":
-    doge.makeEnemy("enemy2")
+    meme.makeEnemy("enemy2")
     break;
     case "$enemy3":
-    doge.makeEnemy("enemy3")
+    meme.makeEnemy("enemy3")
     break;
     case "$enemy4":
-    doge.makeEnemy("enemy4")
+    meme.makeEnemy("enemy4")
     break;
     case "$enemy5":
-    doge.makeEnemy("enemy5")
+    meme.makeEnemy("enemy5")
     break;
   }
 }
 
-doge.playJumpAudio = function(){
+meme.playJumpAudio = function(){
   var audio = $("audio")[0];
   audio.volume = 1;
   audio.load();
   audio.play();
 }
 
-doge.checkCollision = function(){
+meme.checkCollision = function(){
   var $player = $("#player");
 
   var playerSize = {
@@ -173,6 +193,32 @@ doge.checkCollision = function(){
    playerSize.y < enemySize.y + enemySize.height &&
    playerSize.height + playerSize.y > enemySize.y) {
     return true 
+  }
 }
+
+meme.changeMeme = function(){
+  $("button").on("click", function(){
+    meme.changePlayer();
+    meme.ChangeEnemy();
+  })
 }
+
+meme.changePlayer = function(){
+  if($("#player").hasClass("doge")){
+    $("#player").removeClass("doge");
+    $("#player").addClass("nyan");
+  } else {
+    $("#player").removeClass("nyan");
+    $("#player").addClass("doge");
+  }
+}
+
+meme.ChangeEnemy = function(){
+  if($(".enemy").val() === "doge"){
+    $(".enemy").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)")
+  } else {
+    $(".enemy").css("background-image", "url(http://i.imgur.com/NNF1YFP.png)")
+  }
+}
+
 
