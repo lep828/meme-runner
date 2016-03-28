@@ -26,16 +26,16 @@ bluck.removeEnemy = function(){
 }
 
 bluck.refreshers = function(){
-  bluck.$scoreDisplay = $("#score");
+  bluck.$enemy = $(".enemy");
   bluck.$highScore = $("#highScore");
+  bluck.$scoreDisplay = $("#score");
   var highScore = 0;
   var score = 0;
-  bluck.$enemy = $(".enemy");
 
   setInterval(function(){
-    bluck.$enemy = $(".enemy");
     score++;
     bluck.$scoreDisplay.html("Current Score = " + score);
+    bluck.$enemy = $(".enemy");
     bluck.removeEnemy();
 
     if(bluck.checkCollision() === true){
@@ -45,7 +45,6 @@ bluck.refreshers = function(){
       }
       score = 0;
       bluck.$scoreDisplay.html("Current Score = 0");
-      bluck.enemySpeed = 850;
       $("audio")[2].play();
       $(".enemy").stop();
     }
@@ -55,13 +54,13 @@ bluck.refreshers = function(){
 bluck.randomSpawn = function(){
   var randomNum = Math.random()
 
-  if(randomNum < 0.4){
+  if(randomNum < 0.5){
     return "$enemy1";
-  } else if(randomNum < 0.6){
+  } else if(randomNum < 0.625){
     return "$enemy2";
   } else if(randomNum < 0.75){
     return "$enemy3";
-  } else if(randomNum < 0.9){
+  } else if(randomNum < 0.875){
     return "$enemy4"
   } else {
     return "$enemy5"

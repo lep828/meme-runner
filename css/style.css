@@ -88,15 +88,16 @@ main {
   height: 120px;
 }
 
-#score {
+.scores {
   font-size: 15px;
   position: fixed;
+}
+
+#score {
   top: 40px;
 }
 
 #highScore {
-  font-size: 15px;
-  position: fixed;
   top: 20px;
 }
 
@@ -109,3 +110,30 @@ main {
   left: 46%;
   top: 25%;
 }
+
+@media only screen and (max-width: 960px) {
+  #space {
+    display: none;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  .scores {
+    font-size: 10px;
+  }
+  #playArea {
+    width: 80%;
+    top: 10%;
+    left: 10%;
+  }
+  #player {
+    width: 32px
+    height: 32px;
+  }
+  #floor {
+    width: 80%;
+    bottom: 10%;
+    left: 10%;
+  }
+}
+
