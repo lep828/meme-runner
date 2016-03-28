@@ -66,40 +66,32 @@ bluck.randomSpawn = function(){
   }
 }
 
+bluck.makeEnemy = function(enemyName){
+  $("#playArea").prepend("<div class=enemy id=" + enemyName + "></div>");
+  $("#"+ enemyName).animate({
+    "right": "760px"
+  }, bluck.enemySpeed);
+}
+
 bluck.addEnemy = function(){
   var randomEnemy = bluck.randomSpawn();
   bluck.enemySpeed = 1500;
 
   switch(randomEnemy){
     case "$enemy1":
-    $("#playArea").prepend("<div class=enemy id=enemy1></div>")
-    $("#enemy1").animate({
-      "right": "760px"
-    }, bluck.enemySpeed);
+    bluck.makeEnemy("enemy1")
     break;
     case "$enemy2":
-    $("#playArea").prepend("<div class=enemy id=enemy2></div>")
-    $("#enemy2").animate({
-      "right": "760px"
-    }, bluck.enemySpeed);
+    bluck.makeEnemy("enemy2")
     break;
     case "$enemy3":
-    $("#playArea").prepend("<div class=enemy id=enemy3></div>")
-    $("#enemy3").animate({
-      "right": "760px"
-    }, bluck.enemySpeed);
+    bluck.makeEnemy("enemy3")
     break;
     case "$enemy4":
-    $("#playArea").prepend("<div class=enemy id=enemy4></div>")
-    $("#enemy4").animate({
-      "right": "760px"
-    }, bluck.enemySpeed);
+    bluck.makeEnemy("enemy4")
     break;
     case "$enemy5":
-    $("#playArea").prepend("<div class=enemy id=enemy5></div>")
-    $("#enemy5").animate({
-      "right": "760px"
-    }, bluck.enemySpeed);
+    bluck.makeEnemy("enemy5")
     break;
   }
 }
