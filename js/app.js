@@ -29,7 +29,9 @@ bluck.playerMove = function(){
       $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
       bluck.playJumpAudio();
       if($("#player").position().top <= 0){
-        $("#player").stop().animate({bottom: "0"}, 600)
+        $("#player").stop().animate({
+          bottom: "0"
+        }, 600)
         return false 
       } else {
         $("#player").stop().animate({
@@ -152,5 +154,5 @@ bluck.checkCollision = function(){
    playerSize.y < enemySize.y + enemySize.height &&
    playerSize.height + playerSize.y > enemySize.y) {
     return true 
-  }
+}
 }
