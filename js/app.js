@@ -1,7 +1,7 @@
 var bluck = bluck || {}
+
 bluck.$enemy = $(".enemy");
 bluck.enemySpeed = 1500;
-
 
 $(function(){
   bluck.bindEvents();
@@ -16,15 +16,37 @@ bluck.bindEvents = function(){
   });
 }
 
+bluck.playerMove = function(){
+  $(window).keydown(function (e) {
+    if (e.keyCode === 0 || e.keyCode === 32) {
+      $("#space").css("background-image", "url('http://i.imgur.com/3aYa5Y1.png')")
+    }
+  })
+
+  $(window).keyup(function (e) {
+    if (e.keyCode === 0 || e.keyCode === 32) {
+      e.preventDefault()
+      $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
+      bluck.playJumpAudio();
+      if($("#player").position().top <= 0){
+        $("#player").stop().animate({bottom: "0"}, 600)
+        return false 
+      } else {
+        $("#player").stop().animate({
+          bottom: "+=100px"
+        }, 400, function () {
+          $("#player").animate({
+            bottom: " 0"
+          }, 600);
+        })
+      }
+    }
+  })
+}
+
 bluck.startGame = function(){
   bluck.refreshers();
   setInterval(bluck.addEnemy, 1500);
-}
-
-bluck.removeEnemy = function(){
-  if($(".enemy").length > 1){
-    $(".enemy").slice(1).remove();
-  }
 }
 
 bluck.refreshers = function(){
@@ -50,6 +72,12 @@ bluck.refreshers = function(){
       $(".enemy").stop();
     }
   }, 20);
+}
+
+bluck.removeEnemy = function(){
+  if($(".enemy").length > 1){
+    $(".enemy").slice(1).remove();
+  }
 }
 
 bluck.randomSpawn = function(){
@@ -101,34 +129,6 @@ bluck.playJumpAudio = function(){
   var audio = $("audio")[0]
   audio.load();
   audio.play();
-}
-
-bluck.playerMove = function(){
-  $(window).keydown(function (e) {
-    if (e.keyCode === 0 || e.keyCode === 32) {
-      $("#space").css("background-image", "url('http://i.imgur.com/3aYa5Y1.png')")
-    }
-  })
-
-  $(window).keyup(function (e) {
-    if (e.keyCode === 0 || e.keyCode === 32) {
-      e.preventDefault()
-      $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
-      bluck.playJumpAudio();
-      if($("#player").position().top <= 0){
-        $("#player").stop().animate({bottom: "0"}, 600)
-        return false 
-      } else {
-        $("#player").stop().animate({
-          bottom: "+=100px"
-        }, 400, function () {
-          $("#player").animate({
-            bottom: " 0"
-          }, 600);
-        })
-      }
-    }
-  })
 }
 
 bluck.checkCollision = function(){

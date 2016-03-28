@@ -58,7 +58,6 @@ main {
   background-image: url("http://i.imgur.com/2bP1t6x.png");
 }
 
-
 #enemy1 {
   bottom: 0;
   height: 120px;
@@ -124,4 +123,10 @@ main {
   position: fixed;
   color: white;
   left: 55%;
+}
+
+@media only screen and (max-width: 1150px) {
+  .bottom {
+    display: none;
+  }
 }
