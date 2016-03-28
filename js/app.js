@@ -135,7 +135,8 @@ meme.makeEnemy = function(enemyName){
   if($("#player").hasClass("doge")){
     $(".enemy").css("background-image", "url(http://i.imgur.com/PdjNc5w.png)")
   } else {
-    $(".enemy").css("background-image", "url(http://i.imgur.com/C68bMyB.png)")
+    $(".enemy").css("background-image", "url(http://i.imgur.com/C68bMyB.png)");
+    $(".enemy").css("background-size" , "40px 40px", "background-repeat", "repeat")
   }
   $(".enemy")
   $("#"+ enemyName).animate({

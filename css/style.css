@@ -121,7 +121,8 @@ main {
 #changeMeme {
   position: fixed;
   bottom: 40%;
-  right: 11%;
+  right: 47%;
+  width: 100px;
 }
 
 #sadDoge {
