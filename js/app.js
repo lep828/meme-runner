@@ -25,34 +25,27 @@ doge.playerMove = function(){
   $(window).keypress(function (e) {
     if (e.keyCode === 0 || e.keyCode === 32) {
       e.preventDefault()
-      doge.playJumpAudio();
-      if($("#player").position().top <= 0){
-        return false 
-      } else {
-        $("#player").stop().animate({
-          bottom: "+=100px"
-        }, 300, function () {
-          $("#player").animate({
-            bottom: " 0"
-          }, 600);
-        })
-      }
+      doge.playerMovement();
     }
   })
   $(window).on("click", function(){
-    doge.playJumpAudio();
-    if($("#player").position().top <= 0){
-      return false 
-    } else {
-      $("#player").stop().animate({
-        bottom: "+=100px"
-      }, 300, function () {
-        $("#player").animate({
-          bottom: " 0"
-        }, 600);
-      })
-    }
+    doge.playerMovement();
   })
+}
+
+doge.playerMovement = function(){
+  doge.playJumpAudio();
+  if($("#player").position().top <= 0){
+    return false 
+  } else {
+    $("#player").stop().animate({
+      bottom: "+=100px"
+    }, 300, function () {
+      $("#player").animate({
+        bottom: " 0"
+      }, 600);
+    })
+  }
 }
 
 
@@ -60,9 +53,6 @@ doge.startGame = function(){
   if(doge.play === true){
     doge.refreshers();
     doge.generateEnemies = setInterval(doge.addEnemy, 1500);
-  } else {
-    doge.endScreen = $("#endScreen")
-    console.log("end")
   }
 }
 

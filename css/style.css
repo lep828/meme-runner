@@ -99,7 +99,7 @@ main {
   height: 24px;
   background-size: 100%;
   background-image: url("http://i.imgur.com/pOFcVbB.png"); 
-  left: 46%;
+  left: 45%;
   top: 25%;
   cursor: pointer;
 }
@@ -111,20 +111,25 @@ main {
   width: 800px;
 }
 
-.inactive {
-  background: gray;
-  border: 1px solid black;
-  font-family: "Comic sans MS"
-}
-
-.active {
-  background: white;
-  border: 1px solid black;
-  font-family: "Comic sans MS"
-}
-
-@media only screen and (max-width: 1150px) {
-  .bottom {
+@media only screen and (max-width: 960px) {
+  #playArea {
+    width: 600px;
+    height: 280px;
+    margin-left: 25px; 
+  }
+  #start {
+    top: 40%;
+    left: 40%;
+  }
+  #endScreen {
+    top: 30%;
+    width: 600px;
+  }
+  #floor {
     display: none;
+  }
+  header {
+    font-size: 10px;
+    margin-bottom: 35px;
   }
 }
