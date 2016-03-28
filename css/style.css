@@ -32,7 +32,8 @@ main {
 }
 
 #player {
-  background-image: url("http://i.imgur.com/ugjOpNp.jpg");
+  background-image: url("http://i.imgur.com/bxAvTMl.png");
+  background-size: cover;
   width: 40px;
   height: 40px;
   position: absolute;

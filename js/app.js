@@ -39,6 +39,7 @@ bluck.playerMove = function(){
       }
     }
   })
+  
 }
 
 bluck.startGame = function(){
