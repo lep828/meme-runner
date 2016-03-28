@@ -131,7 +131,7 @@ bluck.playerMove = function(){
           bottom: "+=100px"
         }, 400, function () {
           $("#player").animate({
-            bottom: "0"
+            bottom: " 0"
           }, 600);
         })
       }
