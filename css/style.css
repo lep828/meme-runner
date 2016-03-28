@@ -91,14 +91,11 @@ main {
 .scores {
   font-size: 15px;
   position: fixed;
+  top: 30px
 }
 
 #score {
-  top: 40px;
-}
-
-#highScore {
-  top: 20px;
+  right: 22%;
 }
 
 #start {

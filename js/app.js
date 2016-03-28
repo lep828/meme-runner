@@ -161,5 +161,3 @@ bluck.checkCollision = function(){
     return true 
   }
 }
-
-
