@@ -14,6 +14,7 @@ $(function(){
 doge.bindEvents = function(){
   doge.playerMove();
   $("#start").on("click", function(){
+    $("#player").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)");
     $("#start").fadeOut(1500);
     $("#endScreen").fadeOut(1500);
     doge.play = true;
@@ -74,9 +75,10 @@ doge.refreshers = function(){
         highScore = score;
         doge.$highScore.html("Highscore = " + highScore);
       }
-      $("#endScreen").html("You scored "+ score +" click Start to play again")
+      $("#endScreen").html("You scored "+ score +" click Start to play again");
       $("#endScreen").fadeIn(1500);
       $("#start").fadeIn(1500);
+      $("#player").css("background-image", "url(http://i.imgur.com/0ZLP1X4.png)");
 
       score = 0;
       doge.$scoreDisplay.html("Score = " + score);
