@@ -23,7 +23,8 @@ main {
   display: inline-block;
   right: 0;
   position: absolute;
-  background-size: cover;
+  background-size: 40px 40px;
+  background-repeat: repeat;
 }
 
 .scores {
@@ -46,7 +47,7 @@ main {
 }
 
 .nyan {
-  background-image: url("http://i.imgur.com/NNF1YFP.png");
+  background-image: url("http://i.imgur.com/hgfTVJb.png");
 }
 
 #playArea {
@@ -125,7 +126,7 @@ main {
   width: 100px;
 }
 
-#sadDoge {
+#sadMeme {
   position: fixed;
   width: 160px;
   height: 160px;
@@ -137,7 +138,7 @@ main {
   display: none;
 }
 
-#sadDoge p {
+#sadMeme p {
   text-align: center;
   margin-top: -100px;
 }

@@ -17,15 +17,15 @@ meme.bindEvents = function(){
   $("#start").on("click", function(){
     if($("#player").hasClass("doge")){
       $("#player").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)");
-      $("#sadDoge").fadeOut(1500);
+      $("#sadMeme").fadeOut(1500);
     } else if($("#player").hasClass("nyan")) {
-      $("#player").css("background-image", "url(http://i.imgur.com/NNF1YFP.png)")
-      $("#sadDoge").fadeOut(1500);
+      $("#player").css("background-image", "url(http://i.imgur.com/hgfTVJb.png)")
+      $("#sadMeme").fadeOut(1500);
     }
     $("#start").fadeOut(1500);
     $("#endScreen").fadeOut(1500);
-    meme.play = true;
     meme.startGame();
+    meme.play = true;
   });
 }
 
@@ -87,11 +87,11 @@ meme.refreshers = function(){
       $("#start").fadeIn(1500);
       if($("#player").hasClass("doge")){
         $("#player").css("background-image", "url(http://i.imgur.com/0ZLP1X4.png)");
-        $("#sadDoge").fadeIn(1500);
+        $("#sadMeme").fadeIn(1500);
       } else {
-        $("#player").css("background-image", "url(http://i.imgur.com/HiVC2oc.png)");
-        $("#sadDoge").css("background-image", "url(http://i.imgur.com/HiVC2oc.png)")
-        $("#sadDoge").fadeIn(1500);
+        $("#player").css("background-image", "url(http://i.imgur.com/x0aSqCA.png)");
+        $("#sadMeme").css("background-image", "url(http://i.imgur.com/x0aSqCA.png)")
+        $("#sadMeme").fadeIn(1500);
       }
 
       score = 0;
@@ -133,10 +133,9 @@ meme.randomSpawn = function(){
 meme.makeEnemy = function(enemyName){
   $("#playArea").prepend("<div class=enemy id=" + enemyName + "></div>");
   if($("#player").hasClass("doge")){
-    $(".enemy").css("background-image", "url(http://i.imgur.com/PdjNc5w.png)")
+    $(".enemy").css("background-image", "url(http://i.imgur.com/TL7332I.png)");
   } else {
     $(".enemy").css("background-image", "url(http://i.imgur.com/C68bMyB.png)");
-    $(".enemy").css("background-size" , "40px 40px", "background-repeat", "repeat")
   }
   $(".enemy")
   $("#"+ enemyName).animate({
@@ -167,10 +166,14 @@ meme.addEnemy = function(){
 }
 
 meme.playJumpAudio = function(){
-  var audio = $("audio")[0];
-  audio.volume = 1;
-  audio.load();
-  audio.play();
+  if($("#player").hasClass("doge")){
+    var $audio = $("audio")[0];
+  } else {
+    var $audio = $("audio")[3];
+  }
+  $audio.volume = 1;
+  $audio.load();
+  $audio.play();
 }
 
 meme.checkCollision = function(){
@@ -215,11 +218,9 @@ meme.changePlayer = function(){
 }
 
 meme.ChangeEnemy = function(){
-  if($(".enemy").val() === "doge"){
-    $(".enemy").css("background-image", "url(http://i.imgur.com/bxAvTMl.png)")
+  if($(".enemy").hasClass("doge")){
+    $(".enemy").css("background-image", "url(http://i.imgur.com/mDQoJ6z.png)")
   } else {
     $(".enemy").css("background-image", "url(http://i.imgur.com/NNF1YFP.png)")
   }
 }
-
-
