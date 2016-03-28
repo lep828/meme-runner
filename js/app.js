@@ -1,6 +1,5 @@
 var bluck = bluck || {}
 
-
 $(function(){
   bluck.bindEvents();
   $("audio")[1].play();
