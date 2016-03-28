@@ -18,6 +18,19 @@ main {
   margin: 0 auto;
 }
 
+.enemy {
+  background-image: url("http://i.imgur.com/GuuWOtW.png");
+  width: 40px;
+  display: inline-block;
+  right: 0;
+  position: absolute;
+}
+
+.scores {
+  font-size: 15px;
+  position: fixed;
+}
+
 #player {
   background-image: url("http://i.imgur.com/ugjOpNp.jpg");
   width: 40px;
@@ -45,23 +58,6 @@ main {
   background-image: url("http://i.imgur.com/2bP1t6x.png");
 }
 
-#space {
-  position: fixed;
-  top: 500px;
-  left: 46%;
-  height: 24px;
-  width: 100px;
-  background-size: 100%;
-  background-image: url("http://i.imgur.com/EwBCKl7.png");
-}
-
-.enemy {
-  background-image: url("http://i.imgur.com/GuuWOtW.png");
-  width: 40px;
-  display: inline-block;
-  right: 0;
-  position: absolute;
-}
 
 #enemy1 {
   bottom: 0;
@@ -88,11 +84,6 @@ main {
   height: 120px;
 }
 
-.scores {
-  font-size: 15px;
-  position: fixed;
-}
-
 #score {
   top: 40px;
 }
@@ -111,4 +102,26 @@ main {
   top: 25%;
 }
 
+#space {
+  position: fixed;
+  top: 500px;
+  left: 46%;
+  height: 24px;
+  width: 100px;
+  background-size: 100%;
+  background-image: url("http://i.imgur.com/EwBCKl7.png");
+}
 
+#text1 {
+  top: 502px;
+  position: fixed;
+  color: white;
+  left: 38%;
+}
+
+#text2 {
+  top: 502px;
+  position: fixed;
+  color: white;
+  left: 55%;
+}
