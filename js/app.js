@@ -1,4 +1,7 @@
 var bluck = bluck || {}
+bluck.$enemy = $(".enemy");
+bluck.enemySpeed = 1500;
+
 
 $(function(){
   bluck.bindEvents();
@@ -25,7 +28,6 @@ bluck.removeEnemy = function(){
 }
 
 bluck.refreshers = function(){
-  bluck.$enemy = $(".enemy");
   bluck.$highScore = $("#highScore");
   bluck.$scoreDisplay = $("#score");
   var highScore = 0;
@@ -43,7 +45,7 @@ bluck.refreshers = function(){
         bluck.$highScore.html("Highscore = " + highScore);
       }
       score = 0;
-      bluck.$scoreDisplay.html("Current Score = 0");
+      bluck.$scoreDisplay.html("Current Score = " + score);
       $("audio")[2].play();
       $(".enemy").stop();
     }
@@ -75,7 +77,6 @@ bluck.makeEnemy = function(enemyName){
 
 bluck.addEnemy = function(){
   var randomEnemy = bluck.randomSpawn();
-  bluck.enemySpeed = 1500;
 
   switch(randomEnemy){
     case "$enemy1":
