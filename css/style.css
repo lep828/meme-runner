@@ -47,6 +47,7 @@ main {
   height: 340px;
   width: 800px;
   display: inline-block;
+  overflow: hidden;
 }
 
 #floor {
@@ -102,36 +103,11 @@ main {
   cursor: pointer;
 }
 
-#space {
+#endScreen {
   position: fixed;
-  top: 500px;
-  left: 46%;
-  height: 24px;
-  width: 100px;
-  background-size: 100%;
-  background-image: url("http://i.imgur.com/EwBCKl7.png");
-}
-
-#text1 {
-  top: 502px;
-  position: fixed;
-  color: white;
-  left: 38%;
-}
-
-#text2 {
-  top: 502px;
-  position: fixed;
-  color: white;
-  left: 55%;
-}
-
-#doge {
-  cursor: pointer;
-  position: absolute;
-  bottom: 50px;
-  right: 50px;
-  width: 100px;
+  top: 15%;
+  text-align: center;
+  width: 800px;
 }
 
 .inactive {

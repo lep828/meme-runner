@@ -2,42 +2,36 @@ var bluck = bluck || {}
 
 bluck.$enemy = $(".enemy");
 bluck.enemySpeed = 1500;
+bluck.play = true;
 
 $(function(){
   bluck.bindEvents();
   $("audio")[1].play();
-  bluck.dogeMode();
+  // bluck.dogeMode();
 })
 
 bluck.bindEvents = function(){
   bluck.playerMove();
-  $("#start").one("click", function(){
+  $("#start").on("click", function(){
     $("#start").fadeOut(1500);
+    $("#endScreen").fadeOut(1500);
+    bluck.play = true;
     bluck.startGame();
   });
 }
 
 bluck.playerMove = function(){
-  $(window).keydown(function (e) {
-    if (e.keyCode === 0 || e.keyCode === 32) {
-      $("#space").css("background-image", "url('http://i.imgur.com/3aYa5Y1.png')")
-    }
-  })
-
-  $(window).keyup(function (e) {
+  $(window).keypress(function (e) {
     if (e.keyCode === 0 || e.keyCode === 32) {
       e.preventDefault()
-      $("#space").css("background-image", "url('http://i.imgur.com/EwBCKl7.png')")
       bluck.playJumpAudio();
+
       if($("#player").position().top <= 0){
-        $("#player").stop().animate({
-          bottom: "0"
-        }, 600)
         return false 
       } else {
         $("#player").stop().animate({
           bottom: "+=100px"
-        }, 400, function () {
+        }, 300, function () {
           $("#player").animate({
             bottom: " 0"
           }, 600);
@@ -48,8 +42,13 @@ bluck.playerMove = function(){
 }
 
 bluck.startGame = function(){
-  bluck.refreshers();
-  setInterval(bluck.addEnemy, 1500);
+  if(bluck.play === true){
+    bluck.refreshers();
+    bluck.generateEnemies = setInterval(bluck.addEnemy, 1500);
+  } else {
+    bluck.endScreen = $("#endScreen")
+    console.log("end")
+  }
 }
 
 bluck.refreshers = function(){
@@ -58,6 +57,7 @@ bluck.refreshers = function(){
   var highScore = 0;
   var score = 0;
 
+  bluck.refreshing = 
   setInterval(function(){
     score++;
     bluck.$scoreDisplay.html("Current Score = " + score);
@@ -69,13 +69,23 @@ bluck.refreshers = function(){
         highScore = score;
         bluck.$highScore.html("Highscore = " + highScore);
       }
+      $("#endScreen").html("You scored "+ score +" click Start to play again")
+      $("#endScreen").fadeIn(1500);
+      $("#start").fadeIn(1500);
+
       score = 0;
       bluck.$scoreDisplay.html("Current Score = " + score);
       $("audio")[2].play();
       $(".enemy").stop();
+      bluck.play = false;
+      $(".enemy").slice(0).remove();
+      clearInterval(bluck.generateEnemies);
+      clearInterval(bluck.refreshing);
+
     }
   }, 20);
 }
+//
 
 bluck.removeEnemy = function(){
   if($(".enemy").length > 1){
@@ -155,31 +165,6 @@ bluck.checkCollision = function(){
    playerSize.y < enemySize.y + enemySize.height &&
    playerSize.height + playerSize.y > enemySize.y) {
     return true 
+  }
 }
-}
-
-
-bluck.dogeMode = function(){
-  $("#doge").on("click", function(){
-    if($("#doge").hasClass("inactive") === true){
-      $("#doge").removeClass("inactive");
-      $("#doge").addClass("active");
-      $("#doge").html("No Doge");
-
-      $("#player").css("background-image", "url(http://piq.codeus.net/static/media/userpics/piq_302527_400x400.png),");
-      $("#playArea").css("background-image", "url(http://www.funnyjunk.com/Wow/funny-gifs/4851032)")
-    } else {
-      $("#doge").removeClass("active");
-      $("#doge").addClass("inactive");
-      $("#doge").html("Such Doge");
-
-      $("#player").css("background-image", "url(http://i.imgur.com/ugjOpNp.jpg)");
-    }
-  })
-}
-
-
-
-
-
 
