@@ -51,7 +51,8 @@ main {
 }
 
 #playArea {
-  background-image: url("http://www.farmsafetyforjustkids.org/images/fs4jk-background.jpg");
+  background-image: url("http://i.imgur.com/4wcEqRH.jpg?1");
+  background-size: cover;
   position: fixed;
   height: 340px;
   width: 800px;
@@ -139,7 +140,7 @@ main {
   background-size: cover;
   opacity: 0.1;
   top: 31%;
-  left: 42%;
+  left: 43%;
   display: none;
 }
 
