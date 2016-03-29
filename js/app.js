@@ -101,7 +101,6 @@ meme.refreshers = function(){
       $(".enemy").slice(0).remove();
       clearInterval(meme.generateEnemies);
       clearInterval(meme.refreshing);
-
     }
   }, 20);
 }
