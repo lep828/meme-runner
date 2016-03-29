@@ -10,6 +10,8 @@ $(function(){
   var backgroundMusic = $("audio")[1];
   backgroundMusic.volume = 0.2;
   backgroundMusic.play();
+  meme.highScore = 0;
+
 })
 
 meme.bindEvents = function(){
@@ -66,7 +68,6 @@ meme.startGame = function(){
 meme.refreshers = function(){
   meme.$highScore = $("#highScore");
   meme.$scoreDisplay = $("#score");
-  var highScore = 0;
   var score = 0;
 
   meme.refreshing = 
@@ -77,9 +78,9 @@ meme.refreshers = function(){
     meme.removeEnemy();
 
     if(meme.checkCollision() === true){
-      if(score > highScore){
-        highScore = score;
-        meme.$highScore.html("Highscore = " + highScore);
+      if(score > meme.highScore){
+        meme.highScore = score;
+        meme.$highScore.html("Highscore = " + meme.highScore);
       }
       $("#endScreen").html("You scored "+ score +" click Start to play again");
       $("#endScreen").fadeIn(1500);
