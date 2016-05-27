@@ -3,15 +3,15 @@ var meme = meme || {}
 meme.$enemy = $(".enemy");
 meme.enemySpeed = 1500;
 meme.play = true;
+meme.highScore = 0;
 
 $(function(){
   meme.bindEvents();
   meme.changeMeme();
+
   var backgroundMusic = $("audio")[1];
   backgroundMusic.volume = 0.2;
   backgroundMusic.play();
-  meme.highScore = 0;
-
 })
 
 meme.bindEvents = function(){
@@ -34,7 +34,6 @@ meme.bindEvents = function(){
 meme.playerMove = function(){
   $(window).keypress(function (e) {
     if (e.keyCode === 0 || e.keyCode === 32) {
-      e.preventDefault()
       meme.playerMovement();
     }
   })
@@ -105,7 +104,6 @@ meme.refreshers = function(){
     }
   }, 20);
 }
-//
 
 meme.removeEnemy = function(){
   if($(".enemy").length > 1){

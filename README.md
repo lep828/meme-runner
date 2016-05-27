@@ -13,7 +13,7 @@ To play you can move using either Spacebar or Clicking to jump with your meme.
 
 The aim of the game is to last as long as you can dodging the other meme. 
 
-[Meme Runner](https://limitless-wave-79055.herokuapp.com/)
+[Meme Runner](https://memerunner.herokuapp.com/)
 
 ##Technologies used
 * Javascript (Including the jQuery library) 
