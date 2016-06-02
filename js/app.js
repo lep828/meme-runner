@@ -8,8 +8,6 @@ meme.highScore = 0;
 $(function(){
   meme.bindEvents();
   meme.changeMeme();
-
-  console.log("here");
   
   var backgroundMusic = $("audio")[1];
   backgroundMusic.volume = 0.2;
