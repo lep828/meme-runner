@@ -6,6 +6,7 @@ meme.play = true;
 meme.highScore = 0;
 
 $(function(){
+  
   meme.bindEvents();
   meme.changeMeme();
   
@@ -37,6 +38,7 @@ meme.playerMove = function(){
       meme.playerMovement();
     }
   })
+  
   $("#playArea").on("click", function(){
     meme.playerMovement();
   })
