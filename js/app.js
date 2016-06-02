@@ -1,5 +1,6 @@
 var meme = meme || {}
 
+console.log("hi");
 meme.$enemy = $(".enemy");
 meme.enemySpeed = 1500;
 meme.play = true;
