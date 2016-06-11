@@ -16,9 +16,10 @@ The aim of the game is to last as long as you can dodging the other meme.
 [Meme Runner](https://memerunner.herokuapp.com/)
 
 ##Technologies used
-* Javascript (Including the jQuery library) 
-* HTML
-* CSS
+- JavaScript
+- jQuery
+- HTML
+- CSS
 
 ##If I had more time, I would...
 - Style my button better.
