@@ -9,8 +9,6 @@ $(function(){
   meme.bindEvents();
   meme.changeMeme();
   
-  console.log("test please");
-  
   var backgroundMusic = $("audio")[1];
   backgroundMusic.volume = 0.2;
   backgroundMusic.play();
