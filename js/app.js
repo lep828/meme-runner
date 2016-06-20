@@ -5,9 +5,7 @@ meme.enemySpeed = 1500;
 meme.play = true;
 meme.highScore = 0;
 
-$(function(){
-  console.log("testing");
-  
+$(function(){  
   meme.bindEvents();
   meme.changeMeme();
   
