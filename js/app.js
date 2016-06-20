@@ -6,6 +6,8 @@ meme.play = true;
 meme.highScore = 0;
 
 $(function(){
+  console.log("testing");
+  
   meme.bindEvents();
   meme.changeMeme();
   
